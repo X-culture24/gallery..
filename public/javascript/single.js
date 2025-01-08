@@ -7,6 +7,7 @@ $(document).ready(function(){
         // e.preventDefault()
         var  name = $('input').val();
         var id = $('form').attr('data-id');
+
         fetch('/image/'+id, {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
@@ -22,6 +23,22 @@ $(document).ready(function(){
             console.log(data)
         })
     })
+
+        $.ajax({
+            type: 'put',
+            url: '/image/'+id,
+            headers: {'Content-Type': 'application/json'},
+            data: JSON.stringify({
+                'name': name
+            }), 
+            error: function(err){
+                console.log(err)
+            }
+        })
+    })
+   
+
+
     $('#delete').on("click", function(){
         var id = $('#delete').attr('data-id');
         console.log(id)
